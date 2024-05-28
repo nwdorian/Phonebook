@@ -35,6 +35,12 @@ internal class Menu
                 case MenuOptions.ViewAllContacts:
                     break;
                 case MenuOptions.Exit:
+                    if (AnsiConsole.Confirm("Are you sure you want to exit?"))
+                    {
+                        Console.WriteLine("Goodbye!");
+                        exit = true;
+                    }
+                    exit = false;
                     break;
             }
         }
