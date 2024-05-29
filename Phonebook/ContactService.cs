@@ -95,7 +95,20 @@ internal class ContactService
             return;
         }
         TableVisualization.ShowContacts(contacts);
+    }
 
+    internal static void GetContact()
+    {
+        var contact = GetContactInput();
+
+        if (contact.Id == 0)
+        {
+            AnsiConsole.MarkupLine("\n[red]No contacts found![/]");
+            AnsiConsole.Write("Press any key to continue...");
+            Console.ReadKey();
+            return;
+        }
+        TableVisualization.ShowContact(contact);
     }
 
     private static Contact GetContactInput()

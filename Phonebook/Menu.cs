@@ -28,6 +28,7 @@ internal class Menu
                     ContactService.GetContacts();
                     break;
                 case MenuOptions.ViewContact:
+                    ContactService.GetContact();
                     break;
                 case MenuOptions.AddContact:
                     ContactService.InsertContact();
