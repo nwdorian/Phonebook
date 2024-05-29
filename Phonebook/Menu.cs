@@ -4,7 +4,7 @@ using static Phonebook.Enums;
 namespace Phonebook;
 internal class Menu
 {
-    internal async Task MainMenu()
+    internal void MainMenu()
     {
         var exit = false;
 
