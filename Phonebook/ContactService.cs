@@ -58,11 +58,15 @@ internal class ContactService
 
         contact.PhoneNumber = phoneNumber.Trim();
 
-        ContactRepository.AddContact(contact);
+        if (AnsiConsole.Confirm($"Add a new contact {contact.Name}?"))
+        {
+            ContactRepository.AddContact(contact);
 
-        AnsiConsole.MarkupLine("\n[green]New contact was successfully added![/]");
-        AnsiConsole.Write("Press any key to continue...");
-        Console.ReadKey();
+            AnsiConsole.MarkupLine("\n[green]New contact was successfully added![/]");
+            AnsiConsole.Write("Press any key to continue...");
+            Console.ReadKey();
+        }
+
     }
 
     internal static void DeleteContact()
@@ -77,16 +81,21 @@ internal class ContactService
             return;
         }
 
-        ContactRepository.DeleteContact(contact);
+        if (AnsiConsole.Confirm($"Are you sure you want to delete the contact {contact.Name}?"))
+        {
+            ContactRepository.DeleteContact(contact);
 
-        AnsiConsole.MarkupLine("\n[green]Contact was successfully deleted![/]");
-        AnsiConsole.Write("Press any key to continue...");
-        Console.ReadKey();
+            AnsiConsole.MarkupLine("\n[green]Contact was successfully deleted![/]");
+            AnsiConsole.Write("Press any key to continue...");
+            Console.ReadKey();
+        }
     }
 
     internal static void UpdateContact()
     {
         var contact = GetContactInput();
+
+        var originalName = contact.Name;
 
         if (contact.Id == 0)
         {
@@ -156,11 +165,14 @@ internal class ContactService
             contact.PhoneNumber = phoneNumber.Trim();
         }
 
-        ContactRepository.UpdateContact(contact);
+        if (AnsiConsole.Confirm($"Are you sure you want to save changes to the contact {originalName}"))
+        {
+            ContactRepository.UpdateContact(contact);
 
-        AnsiConsole.MarkupLine("\n[green]Contact was successfully updated![/]");
-        AnsiConsole.Write("Press any key to continue...");
-        Console.ReadKey();
+            AnsiConsole.MarkupLine("\n[green]Contact was successfully updated![/]");
+            AnsiConsole.Write("Press any key to continue...");
+            Console.ReadKey();
+        }
     }
 
     internal static void GetContacts()

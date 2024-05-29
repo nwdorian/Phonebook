@@ -7,7 +7,7 @@ internal static class TableVisualization
     internal static void ShowContacts(List<Contact> contacts)
     {
         var table = new Table();
-        table.AddColumns("Name", "Email", "Phone Number");
+        table.AddColumns("[blue]Name[/]", "[blue]Email[/]", "[blue]Phone Number[/]");
 
         foreach (var contact in contacts)
         {
