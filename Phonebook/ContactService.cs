@@ -65,6 +65,44 @@ internal class ContactService
         Console.ReadKey();
     }
 
+    internal static void DeleteContact()
+    {
+        var contact = GetContactInput();
+
+        if (contact.Id == 0)
+        {
+            AnsiConsole.MarkupLine("\n[red]Contact was not found![/]");
+            AnsiConsole.Write("Press any key to continue...");
+            Console.ReadKey();
+            return;
+        }
+
+        ContactRepository.DeleteContact(contact);
+
+        AnsiConsole.MarkupLine("\n[green]Contact was successfully deleted![/]");
+        AnsiConsole.Write("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    private static Contact GetContactInput()
+    {
+        var contacts = ContactRepository.GetContacts();
+
+        var contactNames = contacts.Select(x => x.Name).ToList();
+
+        var selection = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+            .Title("Select contact")
+            .AddChoices(contactNames)
+            );
+
+        var id = contacts.Find(x => x.Name == selection)?.Id ?? 0;
+
+        var contact = ContactRepository.GetContactById(id);
+
+        return contact ?? new Contact();
+    }
+
     private static bool NameExists(string name)
     {
         var contacts = ContactRepository.GetContacts();

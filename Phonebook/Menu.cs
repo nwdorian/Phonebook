@@ -28,6 +28,7 @@ internal class Menu
                     ContactService.InsertContact();
                     break;
                 case MenuOptions.DeleteContact:
+                    ContactService.DeleteContact();
                     break;
                 case MenuOptions.UpdateContact:
                     break;
