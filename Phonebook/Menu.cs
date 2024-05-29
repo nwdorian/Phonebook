@@ -25,6 +25,7 @@ internal class Menu
             switch (selection)
             {
                 case MenuOptions.AddContact:
+                    ContactService.InsertContact();
                     break;
                 case MenuOptions.DeleteContact:
                     break;
