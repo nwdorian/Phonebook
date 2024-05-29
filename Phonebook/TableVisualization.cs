@@ -21,15 +21,12 @@ internal static class TableVisualization
 
     internal static void ShowContact(Contact contact)
     {
-        var panel = new Panel($@"Name: {contact.Name}
-Email:{contact.Email}
-Phone Number: {contact.PhoneNumber}");
+        var panel = new Panel($@"[blue]Name:[/] {contact.Name}
+[blue]Email:[/] {contact.Email}
+[blue]Phone:[/] {contact.PhoneNumber}");
         panel.Header = new PanelHeader("Contact info");
         panel.Padding = new Padding(2, 2, 2, 2);
 
         AnsiConsole.Write(panel);
-
-        Console.Write("Press any key to continue");
-        Console.ReadKey();
     }
 }

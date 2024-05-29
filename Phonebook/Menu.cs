@@ -37,6 +37,7 @@ internal class Menu
                     ContactService.DeleteContact();
                     break;
                 case MenuOptions.UpdateContact:
+                    ContactService.UpdateContact();
                     break;
                 case MenuOptions.Exit:
                     if (AnsiConsole.Confirm("Are you sure you want to exit?"))
