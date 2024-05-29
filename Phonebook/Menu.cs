@@ -24,15 +24,20 @@ internal class Menu
 
             switch (selection)
             {
-                case MenuOptions.AddContact:
-                    break;
-                case MenuOptions.DeleteContact:
-                    break;
-                case MenuOptions.UpdateContact:
+                case MenuOptions.ViewAllContacts:
+                    ContactService.GetContacts();
                     break;
                 case MenuOptions.ViewContact:
+                    ContactService.GetContact();
                     break;
-                case MenuOptions.ViewAllContacts:
+                case MenuOptions.AddContact:
+                    ContactService.InsertContact();
+                    break;
+                case MenuOptions.DeleteContact:
+                    ContactService.DeleteContact();
+                    break;
+                case MenuOptions.UpdateContact:
+                    ContactService.UpdateContact();
                     break;
                 case MenuOptions.Exit:
                     if (AnsiConsole.Confirm("Are you sure you want to exit?"))
@@ -40,7 +45,10 @@ internal class Menu
                         Console.WriteLine("Goodbye!");
                         exit = true;
                     }
-                    exit = false;
+                    else
+                    {
+                        exit = false;
+                    }
                     break;
             }
         }

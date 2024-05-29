@@ -9,7 +9,6 @@ internal class Contact
     [Column(TypeName = "nvarchar(100)")]
     public string? Name { get; set; }
     [Required]
-    [EmailAddress(ErrorMessage = "Invalid email address")]
     [Column(TypeName = "nvarchar(100)")]
     public string? Email { get; set; }
     [Required]

@@ -3,11 +3,11 @@ internal class Enums
 {
     internal enum MenuOptions
     {
+        ViewAllContacts,
+        ViewContact,
         AddContact,
         DeleteContact,
         UpdateContact,
-        ViewContact,
-        ViewAllContacts,
         Exit
     }
 }
