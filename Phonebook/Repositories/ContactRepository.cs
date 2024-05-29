@@ -32,6 +32,11 @@ internal class ContactRepository
         using var db = new ContactContext();
         var contacts = db.Contacts.ToList();
 
+        if (!contacts.Any())
+        {
+            return Enumerable.Empty<Contact>().ToList();
+        }
+
         return contacts;
     }
 

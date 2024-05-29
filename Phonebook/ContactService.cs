@@ -71,7 +71,7 @@ internal class ContactService
 
         if (contact.Id == 0)
         {
-            AnsiConsole.MarkupLine("\n[red]Contact was not found![/]");
+            AnsiConsole.MarkupLine("\n[red]No contacts found![/]");
             AnsiConsole.Write("Press any key to continue...");
             Console.ReadKey();
             return;
@@ -84,23 +84,41 @@ internal class ContactService
         Console.ReadKey();
     }
 
+    internal static void GetContacts()
+    {
+        var contacts = ContactRepository.GetContacts();
+        if (!contacts.Any())
+        {
+            AnsiConsole.MarkupLine("\n[red]No contacts found![/]");
+            AnsiConsole.Write("Press any key to continue...");
+            Console.ReadKey();
+            return;
+        }
+        TableVisualization.ShowContacts(contacts);
+
+    }
+
     private static Contact GetContactInput()
     {
         var contacts = ContactRepository.GetContacts();
 
-        var contactNames = contacts.Select(x => x.Name).ToList();
+        if (contacts.Any())
+        {
+            var contactNames = contacts.Select(x => x.Name).ToList();
 
-        var selection = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-            .Title("Select contact")
-            .AddChoices(contactNames)
-            );
+            var selection = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                .Title("Select contact:")
+                .AddChoices(contactNames)
+                );
 
-        var id = contacts.Find(x => x.Name == selection)?.Id ?? 0;
+            var id = contacts.Find(x => x.Name == selection)?.Id ?? 0;
 
-        var contact = ContactRepository.GetContactById(id);
+            var contact = ContactRepository.GetContactById(id);
 
-        return contact ?? new Contact();
+            return contact ?? new Contact();
+        }
+        return new Contact();
     }
 
     private static bool NameExists(string name)

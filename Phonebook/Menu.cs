@@ -24,6 +24,11 @@ internal class Menu
 
             switch (selection)
             {
+                case MenuOptions.ViewAllContacts:
+                    ContactService.GetContacts();
+                    break;
+                case MenuOptions.ViewContact:
+                    break;
                 case MenuOptions.AddContact:
                     ContactService.InsertContact();
                     break;
@@ -32,17 +37,16 @@ internal class Menu
                     break;
                 case MenuOptions.UpdateContact:
                     break;
-                case MenuOptions.ViewContact:
-                    break;
-                case MenuOptions.ViewAllContacts:
-                    break;
                 case MenuOptions.Exit:
                     if (AnsiConsole.Confirm("Are you sure you want to exit?"))
                     {
                         Console.WriteLine("Goodbye!");
                         exit = true;
                     }
-                    exit = false;
+                    else
+                    {
+                        exit = false;
+                    }
                     break;
             }
         }
